@@ -1,10 +1,35 @@
 <html>
-    <head>
-        <title>淘汰网站</title>
-        <meta http-equiv="refresh" content="5;url=https://tolivegame.github.io">
-    </head>
-    <body>
-        ToLive官网已迁移到<a href="https://tolivegame.github.io">https://tolivegame.github.io</a><br>
-        5秒后自动跳转
-    </body>
+	<head>
+		<script>
+function Calc(){
+	var Min=Number(document.forms["Data"]["MIN"].value);
+	var Max=Number(document.forms["Data"]["MAX"].value);
+	var Num=Number(document.forms["Data"]["NUM"].value);
+	if(Max<Min)alert("无效数据");
+	if(Num>Max-Min+1)alert("无效数据");
+	let List=new Array(Max-Min+1);
+	for(var i=0;i<=Max-Min;i++)List[i]=i+Min;
+	List.sort(function(){return 0.5-Math.random()});
+	let ResList=new Array(Num);
+	for(var i=0;i<Num;i++)ResList[i]=List[i];
+	document.getElementById("Res").innerHTML=ResList;
+}
+		</script>
+		<meta charset="utf8">
+		<title>随机数生成器</title>
+	</head>
+	<body style="text-align:center">
+		<h1>随机数生成器</h1>
+		<form name="Data">
+			最小值:<br>
+			<input type="text" name="MIN" required><br>
+			最大值:<br>
+			<input type="text" name="MAX" required><br>
+			个数:<br>
+			<input type="text" name="NUM" required><br>
+		</form>
+		<button onclick="Calc()">显示结果</button><br><br>
+		结果将显示在这里:
+		<div id="Res"></div>
+	</body>
 </html>
